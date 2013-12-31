@@ -20,16 +20,11 @@ RUN apt-get update
 RUN LC_ALL=en_US.UTF-8 DEBIAN_FRONTEND=noninteractive apt-get -y install mariadb-server
 
 RUN cp /etc/mysql/my.cnf /etc/mysql/my.cnf.orig ;\
- sed -i '/^bind-address*/ s/^/#/' /etc/mysql/my.cnf ;\
- sed -i '/^datadir*/ s|/var/lib/mysql|/data/mysql|' /etc/mysql/my.cnf ;\
- mkdir -p /data ;\
- mv /var/lib/mysql /data/mysql
+ sed -i '/^bind-address*/ s/^/#/' /etc/mysql/my.cnf
 
 # allow autostart again
 RUN	rm /usr/sbin/policy-rc.d
 
 EXPOSE 3306 
-
-#CMD ["/bin/bash"]
 
 CMD ["/usr/bin/mysqld_safe"]
