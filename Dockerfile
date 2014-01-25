@@ -25,6 +25,7 @@ RUN add-apt-repository 'deb http://ftp.osuosl.org/pub/mariadb/repo/10.0/ubuntu p
 RUN apt-get update
 RUN apt-get -y install mariadb-server
 
+ADD mysql/my.cnf /etc/mysql/my.cnf
 RUN cp /etc/mysql/my.cnf /etc/mysql/my.cnf.orig ;\
  sed -i '/^bind-address*/ s/^/#/' /etc/mysql/my.cnf
 
